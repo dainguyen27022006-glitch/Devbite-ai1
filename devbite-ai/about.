@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevByte AI - Pro Max</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* BACKGROUND */
+.bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #1e3a8a, #0f172a, #020617);
+  z-index: -1;
+  animation: move 10s infinite alternate;
+}
+
+@keyframes move {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(35deg); }
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 50px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  color: #38bdf8;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.navbar a {
+  margin-left: 18px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: #38bdf8;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 90px 60px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  color: #38bdf8;
+}
+
+.hero p {
+  color: #cbd5e1;
+  max-width: 600px;
+  margin-top: 10px;
+}
+
+.hero img {
+  width: 380px;
+  border-radius: 18px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+/* QUICK LINKS */
+.btns {
+  display: flex;
+  gap: 10px;
+  padding: 20px 60px;
+  flex-wrap: wrap;
+}
+
+.btns a {
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.btns a:hover {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+/* SECTION BASE */
+.section {
+  padding: 70px 60px;
+}
+
+/* 🔥 PRO MAX 3 FEATURE SECTION */
+.feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+/* VIDEO LEFT */
+.video-box {
+  flex: 1;
+}
+
+.video-box video {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* TEXT RIGHT */
+.text-box {
+  flex: 1;
+}
+
+.text-box h2 {
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.text-box p {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* TEAM */
+.team {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.member {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: 0.3s;
+}
+
+.member:hover {
+  transform: translateY(-10px);
+  border-color: #38bdf8;
+}
+
+/* CHAT */
+.chatbot {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #38bdf8;
+  color: #0f172a;
+  padding: 14px 16px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(56,189,248,0.4);
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .hero, .feature {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .video-box, .text-box {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div style="display:flex;align-items:center;gap:12px;">
+  <div class="logo">DevByte AI</div>
+
+  <a href="login.html"
+    style="padding:7px 16px;border-radius:20px;
+           border:1px solid rgba(255,255,255,0.2);
+           color:#cbd5e1;text-decoration:none;
+           font-size:13px;transition:.2s;"
+    onmouseover="this.style.borderColor='#38bdf8';this.style.color='#38bdf8'"
+    onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#cbd5e1'">
+    Đăng nhập
+  </a>
+
+  <a href="register.html"
+    style="padding:7px 16px;border-radius:20px;
+           background:#38bdf8;color:#0f172a;
+           text-decoration:none;font-size:13px;
+           font-weight:600;transition:.2s;"
+    onmouseover="this.style.background='#0ea5e9'"
+    onmouseout="this.style.background='#38bdf8'">
+    Đăng ký
+  </a>
+</div>
+  <div>
+  <a href="home.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="blog.html">Blog</a>
+  <a href="article.html">Article</a>
+  <a href="guide.html">Guide</a>
+  <a href="sitemap.html">Sitemap</a>
+  </div>
+</div>
+<section class="feature-wrapper">
+
+  <!-- VIDEO -->
+<div class="main-video fade-up">
+  <img src="giphy.webp" alt="DevByte AI"
+    style="width:100%;height:100%;object-fit:cover;border-radius:30px;">
+  <div class="video-shadow"></div>
+</div>
+
+  <!-- CONTENT -->
+  <div class="feature-list">
+
+    <div class="feature-item fade-up">
+      <span>01</span>
+
+      <h2>Sáng tạo & Thiết kế</h2>
+
+      <p>
+        DevByte AI giúp bạn tạo nội dung, thiết kế ý tưởng và xây dựng sản phẩm nhanh hơn với trí tuệ nhân tạo.
+      </p>
+    </div>
+
+    <div class="feature-item fade-up">
+      <span>02</span>
+
+      <h2>Xuất bản & Quảng bá</h2>
+
+      <p>
+        AI hỗ trợ bạn đưa sản phẩm ra thị trường, tối ưu nội dung và tiếp cận người dùng hiệu quả.
+      </p>
+    </div>
+
+    <div class="feature-item fade-up">
+      <span>03</span>
+
+      <h2>Phân tích & Cải tiến</h2>
+
+      <p>
+        AI phân tích dữ liệu, hành vi người dùng và đề xuất cải tiến giúp sản phẩm ngày càng tốt hơn.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+<style>
+  /* ===== SECTION ===== */
+
+.feature-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 60px;
+
+  padding: 100px 7%;
+
+  flex-wrap: wrap;
+
+  background:
+  radial-gradient(circle at top left,
+  rgba(56,189,248,0.08),
+  transparent 25%),
+
+  #0b1120;
+}
+
+/* ===== VIDEO ===== */
+
+.main-video{
+  position: relative;
+
+  flex: 1;
+  min-width: 340px;
+
+  height: 720px;
+
+  overflow: hidden;
+
+  border-radius: 30px;
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+  0 25px 60px rgba(0,0,0,0.45);
+}
+
+.main-video video{
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+/* overlay */
+
+.video-shadow{
+  position: absolute;
+  inset: 0;
+
+  background:
+  linear-gradient(
+    to top,
+    rgba(11,17,32,0.45),
+    rgba(11,17,32,0.05)
+  );
+}
+
+/* ===== RIGHT ===== */
+
+.feature-list{
+  flex: 1;
+  min-width: 340px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+/* ===== CARD ===== */
+
+.feature-item{
+  position: relative;
+
+  padding: 35px;
+
+  border-radius: 28px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.03)
+  );
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(16px);
+
+  transition: all 0.45s ease;
+
+  overflow: hidden;
+}
+
+/* hover */
+
+.feature-item:hover{
+  transform: translateX(10px);
+
+  border-color: rgba(56,189,248,0.4);
+
+  box-shadow:
+  0 18px 45px rgba(56,189,248,0.15);
+}
+
+/* glow */
+
+.feature-item::before{
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  background:
+  radial-gradient(circle,
+  rgba(56,189,248,0.15),
+  transparent 70%);
+
+  top: -80px;
+  right: -80px;
+}
+
+/* NUMBER */
+
+.feature-item span{
+  display: inline-block;
+
+  margin-bottom: 14px;
+
+  color: #38bdf8;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+/* TITLE */
+
+.feature-item h2{
+  font-size: 34px;
+
+  line-height: 1.15;
+
+  margin-bottom: 16px;
+
+  color: white;
+
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+/* TEXT */
+
+.feature-item p{
+  color: #94a3b8;
+
+  line-height: 1.9;
+
+  font-size: 16px;
+}
+
+/* ===== FADE ===== */
+
+.fade-up{
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.fade-up.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:980px){
+
+  .feature-wrapper{
+    padding: 70px 20px;
+  }
+
+  .main-video{
+    height: 500px;
+  }
+
+  .feature-item h2{
+    font-size: 28px;
+  }
+
+}
+</style>
+
+
+
+
+
+<!-- AI INFO SECTION -->
+<section class="ai-showcase">
+  <div class="ai-title fade-up">
+    <span>DEVBYTE AI PLATFORM</span>
+    <h2>The Future of Intelligent Digital Assistance</h2>
+    <p>
+      Discover how DevByte AI transforms learning, productivity, and creativity
+      through modern artificial intelligence systems.
+    </p>
+  </div>
+
+  <div class="ai-grid">
+
+    <!-- CARD 1 -->
+    <div class="ai-card fade-up">
+      <div class="icon">🤖</div>
+
+      <h3>About the AI System</h3>
+
+      <p>
+        DevByte AI is powered by advanced machine learning and natural language processing technologies.
+        The platform is designed to understand human communication, analyze requests,
+        and generate intelligent responses in real time.
+      </p>
+
+      <p>
+        Unlike traditional software, DevByte AI continuously improves through contextual learning
+        and adaptive response generation. It can assist with programming, content creation,
+        problem solving, brainstorming, and educational support.
+      </p>
+
+      <div class="glow"></div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="ai-card fade-up">
+      <div class="icon">🎯</div>
+
+      <h3>Purpose of the Chatbot</h3>
+
+      <p>
+        The chatbot is designed to become a smart digital companion that supports users 24/7.
+        It provides fast, structured, and meaningful assistance for both simple and complex tasks.
+      </p>
+
+      <p>
+        Whether helping students learn faster, developers write code efficiently,
+        or businesses improve workflow automation, DevByte AI focuses on saving time
+        and increasing productivity through intelligent interaction.
+      </p>
+
+      <div class="glow"></div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="ai-card fade-up">
+      <div class="icon">⚡</div>
+
+      <h3>How It Works</h3>
+
+      <p>
+        DevByte AI processes user input through intelligent language models capable of understanding context,
+        analyzing intent, and generating natural human-like responses.
+      </p>
+
+      <p>
+        The system combines data analysis, contextual memory,
+        and real-time processing to create an interactive AI experience
+        that feels fast, smooth, and highly personalized.
+      </p>
+
+      <div class="glow"></div>
+    </div>
+
+  </div>
+
+</section>
+<style>
+
+body{
+  font-family: 'Inter', sans-serif;
+  background: #0b1120;
+  color: white;
+}
+
+/* ===== SECTION ===== */
+
+.ai-showcase{
+  padding: 120px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== TITLE ===== */
+
+.ai-title{
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 80px;
+}
+
+.ai-title span{
+  display: inline-block;
+
+  padding: 8px 18px;
+
+  background: rgba(56,189,248,0.08);
+  border: 1px solid rgba(56,189,248,0.2);
+
+  border-radius: 999px;
+
+  color: #38bdf8;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+
+  margin-bottom: 25px;
+}
+
+.ai-title h2{
+  font-size: 64px;
+  line-height: 1.05;
+  font-weight: 800;
+
+  margin-bottom: 30px;
+
+  letter-spacing: -2px;
+
+  background: linear-gradient(to right,#ffffff,#94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ai-title p{
+  max-width: 760px;
+  margin: auto;
+
+  font-size: 19px;
+  line-height: 1.9;
+
+  color: #94a3b8;
+
+  font-weight: 400;
+}
+
+/* ===== GRID ===== */
+
+.ai-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+  gap: 35px;
+
+  max-width: 1250px;
+  margin: auto;
+}
+
+/* ===== CARD ===== */
+
+.ai-card{
+  position: relative;
+
+  padding: 40px;
+
+  border-radius: 28px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.03)
+  );
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(18px);
+
+  transition: all 0.45s ease;
+
+  overflow: hidden;
+}
+
+/* HOVER */
+
+.ai-card:hover{
+  transform: translateY(-14px);
+
+  border-color: rgba(56,189,248,0.45);
+
+  box-shadow:
+  0 20px 60px rgba(56,189,248,0.15);
+}
+
+/* ===== ICON ===== */
+
+.icon{
+  width: 78px;
+  height: 78px;
+
+  border-radius: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 34px;
+
+  margin-bottom: 28px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(56,189,248,0.18),
+    rgba(139,92,246,0.12)
+  );
+
+  border: 1px solid rgba(56,189,248,0.2);
+}
+
+/* ===== CARD TITLE ===== */
+
+.ai-card h3{
+  font-size: 28px;
+  line-height: 1.2;
+
+  margin-bottom: 22px;
+
+  font-weight: 700;
+
+  color: white;
+}
+
+/* ===== TEXT ===== */
+
+.ai-card p{
+  font-size: 16px;
+
+  line-height: 1.95;
+
+  color: #94a3b8;
+
+  margin-bottom: 18px;
+
+  font-weight: 400;
+}
+
+/* ===== GLOW ===== */
+
+.glow{
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  background:
+  radial-gradient(circle,
+  rgba(56,189,248,0.22),
+  transparent 70%);
+
+  top: -100px;
+  right: -100px;
+
+  pointer-events: none;
+
+  animation: glowMove 6s ease-in-out infinite;
+}
+
+@keyframes glowMove{
+
+  0%{
+    transform: translateY(0px);
+  }
+
+  50%{
+    transform: translateY(25px);
+  }
+
+  100%{
+    transform: translateY(0px);
+  }
+
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:768px){
+
+  .ai-title h2{
+    font-size: 42px;
+  }
+
+  .ai-title p{
+    font-size: 16px;
+  }
+
+  .ai-card{
+    padding: 30px;
+  }
+
+}
+</style>
+<!-- FAQ SECTION -->
+<section class="faq-section">
+
+  <div class="faq-title fade-up">
+    <span>SUPPORT CENTER</span>
+    <h2>Frequently Asked Questions</h2>
+
+    <p>
+      Tìm hiểu thêm về DevByte AI, cách hệ thống hoạt động và những tính năng hỗ trợ người dùng trong học tập, sáng tạo và phát triển sản phẩm.
+    </p>
+  </div>
+
+  <div class="faq-container">
+
+    <!-- ITEM -->
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        DevByte AI là gì?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          DevByte AI là nền tảng trí tuệ nhân tạo hỗ trợ người dùng trong học tập, lập trình, sáng tạo nội dung và phân tích dữ liệu bằng công nghệ AI hiện đại.
+        </p>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        DevByte AI có miễn phí không?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          DevByte AI cung cấp cả phiên bản miễn phí và nâng cao nhằm đáp ứng nhiều nhu cầu sử dụng khác nhau của người dùng.
+        </p>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        AI có thể hỗ trợ lập trình không?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          Có. DevByte AI có thể hỗ trợ viết code, giải thích thuật toán, sửa lỗi và tối ưu hiệu suất cho nhiều ngôn ngữ lập trình khác nhau.
+        </p>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        DevByte AI hoạt động như thế nào?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          Hệ thống sử dụng mô hình xử lý ngôn ngữ tự nhiên để phân tích yêu cầu người dùng và tạo phản hồi thông minh theo ngữ cảnh.
+        </p>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        AI có thể tạo nội dung tự động không?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          DevByte AI có khả năng tạo bài viết, mô tả sản phẩm, ý tưởng sáng tạo và nhiều loại nội dung khác chỉ trong vài giây.
+        </p>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        DevByte AI có hỗ trợ doanh nghiệp không?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          Có. Hệ thống hỗ trợ phân tích dữ liệu, tự động hóa quy trình và tối ưu trải nghiệm khách hàng cho doanh nghiệp.
+        </p>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        Dữ liệu người dùng có được bảo mật không?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          DevByte AI áp dụng các tiêu chuẩn bảo mật hiện đại nhằm đảm bảo dữ liệu và thông tin người dùng luôn được an toàn.
+        </p>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        DevByte AI có hỗ trợ nhiều ngôn ngữ không?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          Có. Hệ thống hỗ trợ nhiều ngôn ngữ khác nhau giúp người dùng toàn cầu dễ dàng tương tác với AI.
+        </p>
+      </div>
+    </div>
+
+    <!-- ITEM -->
+    <div class="faq-item fade-up">
+      <button class="faq-question">
+        Tương lai của DevByte AI là gì?
+        <span>+</span>
+      </button>
+
+      <div class="faq-answer">
+        <p>
+          DevByte AI hướng tới việc xây dựng một hệ sinh thái AI toàn diện phục vụ học tập, sáng tạo và tự động hóa thông minh trong tương lai.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section> 
+<style>
+  /* ===== FAQ ===== */
+
+.faq-section{
+  padding: 120px 20px;
+
+  background:
+  radial-gradient(circle at top right,
+  rgba(56,189,248,0.08),
+  transparent 25%),
+
+  #0b1120;
+}
+
+/* TITLE */
+
+.faq-title{
+  text-align: center;
+
+  max-width: 850px;
+
+  margin: auto;
+  margin-bottom: 70px;
+}
+
+.faq-title span{
+  color: #38bdf8;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.faq-title h2{
+  font-size: 56px;
+
+  margin: 20px 0;
+
+  color: white;
+
+  letter-spacing: -2px;
+}
+
+.faq-title p{
+  color: #94a3b8;
+
+  line-height: 1.9;
+
+  font-size: 17px;
+}
+
+/* CONTAINER */
+
+.faq-container{
+  max-width: 1000px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+/* ITEM */
+
+.faq-item{
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.03)
+  );
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  transition: 0.4s ease;
+}
+
+.faq-item:hover{
+  border-color: rgba(56,189,248,0.4);
+
+  box-shadow:
+  0 12px 35px rgba(56,189,248,0.12);
+}
+
+/* QUESTION */
+
+.faq-question{
+  width: 100%;
+
+  background: none;
+  border: none;
+
+  color: white;
+
+  padding: 28px;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  text-align: left;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+.faq-question span{
+  color: #38bdf8;
+
+  font-size: 28px;
+
+  transition: 0.3s;
+}
+
+/* ANSWER */
+
+.faq-answer{
+  max-height: 0;
+
+  overflow: hidden;
+
+  transition: all 0.4s ease;
+}
+
+.faq-answer p{
+  padding: 0 28px 28px;
+
+  color: #94a3b8;
+
+  line-height: 1.9;
+
+  font-size: 16px;
+}
+
+/* ACTIVE */
+
+.faq-item.active .faq-answer{
+  max-height: 300px;
+}
+
+.faq-item.active .faq-question span{
+  transform: rotate(45deg);
+}
+
+/* ===== FADE ===== */
+
+.fade-up{
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.fade-up.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .faq-title h2{
+    font-size: 38px;
+  }
+
+  .faq-question{
+    font-size: 18px;
+  }
+
+}
+</style>
+</section>
+<!-- TEAM -->
+<section class="section team-section">
+  <h2>Our Team</h2>
+
+  <div class="team-grid">
+
+    <div class="member-card">
+      <div class="avatar">
+        <img src="images/member1.jpg" alt="Frontend Dev">
+      </div>
+      <h3>Nguyễn Thị Băng Băng</h3>
+      <p>Frontend Developer</p>
+    </div>
+
+    <div class="member-card">
+      <div class="avatar">
+        <img src="images/member2.jpg" alt="AI Engineer">
+      </div>
+      <h3>Nguyễn Tuấn Phát Đại</h3>
+      <p>AI Engineer</p>
+    </div>
+
+    <div class="member-card">
+      <div class="avatar">
+        <img src="images/member3.jpg" alt="UI/UX Designer">
+      </div>
+      <h3>Trần Đăng Thắng</h3>
+      <p>UI/UX Designer</p>
+    </div>
+
+    <div class="member-card">
+      <div class="avatar">
+        <img src="images/member4.jpg" alt="Backend Dev">
+      </div>
+      <h3>Phạm Thị Thảo Vy</h3>
+      <p>Backend Developer</p>
+    </div>
+
+  </div>
+</section>
+<style>
+  .section{
+  padding: 70px 20px;
+  text-align: center;
+  background: #0f172a;
+  color: #fff;
+  overflow: hidden;
+}
+
+.section h2{
+  font-size: 34px;
+  color: #38bdf8;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+
+/* GRID */
+.team-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* CARD */
+.member-card{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(56,189,248,0.2);
+  padding: 30px 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* delay khác nhau cho từng card */
+.member-card:nth-child(2){ animation-delay: 1s; }
+.member-card:nth-child(3){ animation-delay: 2s; }
+.member-card:nth-child(4){ animation-delay: 3s; }
+
+/* HOVER 3D */
+.member-card:hover{
+  transform: translateY(-10px) scale(1.03);
+  border-color: #38bdf8;
+  box-shadow: 0 15px 40px rgba(56,189,248,0.25);
+}
+
+/* AVATAR CIRCLE CHUẨN */
+.avatar{
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #38bdf8;
+  box-shadow: 0 0 20px rgba(56,189,248,0.4);
+  position: relative;
+}
+
+/* đảm bảo KHÔNG OVAL */
+.avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* cực quan trọng */
+  display: block;
+}
+
+/* glow animation nhẹ */
+.avatar::after{
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56,189,248,0.4), transparent 70%);
+  animation: pulse 2.5s infinite;
+  z-index: -1;
+}
+
+/* TEXT */
+.member-card h3{
+  margin: 10px 0 5px;
+  font-size: 18px;
+}
+
+.member-card p{
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float{
+  0%{ transform: translateY(0px); }
+  50%{ transform: translateY(-8px); }
+  100%{ transform: translateY(0px); }
+}
+
+/* GLOW PULSE */
+@keyframes pulse{
+  0%{ transform: scale(0.9); opacity: 0.5; }
+  50%{ transform: scale(1.1); opacity: 0.2; }
+  100%{ transform: scale(0.9); opacity: 0.5; }
+}
+</style>
+<!-- CHATBOT -->
+<div class="chatbot" onclick="window.location.href='chat.html'" title="Mở Chat AI">
+  💬 Chat AI
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const fadeElements = document.querySelectorAll(".fade-up");
+
+  const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+      if(entry.isIntersecting){
+        entry.target.classList.add("show");
+      }
+
+    });
+
+  }, {
+    threshold: 0.15
+  });
+
+  fadeElements.forEach((el) => {
+    observer.observe(el);
+  });
+
+});
+</script>
+<script src="js/profile-widget.js"></script>:
+</body>
+</html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevByte AI – Đăng ký thành viên</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --blue: #2563eb;
+            --cyan: #06b6d4;
+            --green: #22c55e;
+            --red: #ef4444;
+            --glass: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.08);
+            --text-muted: #94a3b8;
+        }
+
+        html, body {
+            width: 100%; height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top left, #172554 0%, #020617 45%, #000 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        /* ---- LAYOUT ---- */
+        .page {
+            display: flex;
+            width: 100%; height: 100vh;
+        }
+
+        /* ---- LEFT BRAND PANEL ---- */
+        .brand-panel {
+            width: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeLeft .5s ease;
+        }
+
+        .brand-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(37,99,235,.18), rgba(6,182,212,.08));
+            border-right: 1px solid var(--glass-border);
+        }
+
+        .brand-logo {
+            width: 60px; height: 60px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 10px 40px rgba(37,99,235,.4);
+            margin-bottom: 32px;
+            animation: float 4s ease infinite;
+            position: relative;
+        }
+
+        .brand-panel h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            background: linear-gradient(135deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-panel p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .brand-features {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+        }
+
+        .brand-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .brand-feature i {
+            width: 32px; height: 32px;
+            border-radius: 10px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15px;
+            color: var(--cyan);
+        }
+
+        /* ---- RIGHT FORM PANEL ---- */
+        .form-panel {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            overflow-y: auto;
+            animation: fadeUp .5s ease;
+        }
+
+        .form-card {
+            width: 100%;
+            max-width: 480px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 40px;
+            backdrop-filter: blur(30px);
+            box-shadow: 0 20px 60px rgba(0,0,0,.4);
+        }
+
+        .form-card h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .form-card .sub {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        /* ---- FORM ELEMENTS ---- */
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 17px;
+            pointer-events: none;
+            transition: color .2s;
+        }
+
+        .input-wrap .toggle-pw {
+            left: auto; right: 16px;
+            cursor: pointer;
+            pointer-events: all;
+        }
+
+        .input-wrap input {
+            width: 100%;
+            height: 52px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            color: white;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            padding: 0 16px 0 46px;
+            outline: none;
+            transition: border .25s, box-shadow .25s;
+        }
+
+        .input-wrap input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56,189,248,.12);
+        }
+
+        .input-wrap input:focus + i,
+        .input-wrap input:focus ~ i:first-of-type {
+            color: var(--cyan);
+        }
+
+        .input-wrap input.error {
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(239,68,68,.12);
+        }
+
+        .input-wrap input.success {
+            border-color: var(--green);
+        }
+
+        /* ---- ERROR TEXT ---- */
+        .err-msg {
+            font-size: 12px;
+            color: var(--red);
+            margin-top: 6px;
+            display: none;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .err-msg.show {
+            display: flex;
+        }
+
+        /* ---- STRENGTH BAR ---- */
+        .strength-wrap {
+            margin-top: 8px;
+            display: none;
+        }
+
+        .strength-wrap.show { display: block; }
+
+        .strength-bar {
+            height: 4px;
+            border-radius: 99px;
+            background: rgba(255,255,255,.08);
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .strength-fill {
+            height: 100%;
+            border-radius: 99px;
+            width: 0;
+            transition: width .35s, background .35s;
+        }
+
+        .strength-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ---- GENDER RADIO ---- */
+        .radio-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .radio-option {
+            flex: 1;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: .25s;
+            user-select: none;
+        }
+
+        .radio-option input { display: none; }
+
+        .radio-option.selected,
+        .radio-option:has(input:checked) {
+            background: rgba(37,99,235,.18);
+            border-color: var(--blue);
+            color: white;
+        }
+
+        /* ---- SUBMIT BUTTON ---- */
+        .btn-submit {
+            width: 100%;
+            height: 56px;
+            border: none;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: .25s;
+            margin-top: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(37,99,235,.35);
+        }
+
+        .btn-submit:active { transform: scale(.98); }
+
+        .btn-submit .spinner {
+            display: none;
+            width: 20px; height: 20px;
+            border: 2px solid rgba(255,255,255,.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            margin: auto;
+        }
+
+        .btn-submit.loading span { display: none; }
+        .btn-submit.loading .spinner { display: block; }
+
+        /* ---- FOOTER LINK ---- */
+        .form-footer {
+            text-align: center;
+            margin-top: 24px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .form-footer a {
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-footer a:hover { text-decoration: underline; }
+
+        /* ---- SUCCESS MODAL ---- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.65);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-box {
+            background: #0f172a;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 28px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            transform: scale(.9) translateY(20px);
+            transition: transform .35s;
+            box-shadow: 0 30px 80px rgba(0,0,0,.5);
+        }
+
+        .modal-overlay.show .modal-box {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-icon {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            background: rgba(34,197,94,.15);
+            border: 2px solid rgba(34,197,94,.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 20px;
+        }
+
+        .modal-box h3 { font-size: 22px; margin-bottom: 10px; }
+        .modal-box p { color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+
+        .modal-info {
+            margin: 20px 0;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .modal-info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-muted);
+        }
+
+        .modal-info-row:last-child { border: none; }
+        .modal-info-row span:last-child { color: white; font-weight: 500; }
+
+        .btn-modal {
+            width: 100%;
+            height: 50px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: .25s;
+        }
+
+        .btn-modal:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,99,235,.35); }
+
+        /* ---- ANIMATIONS ---- */
+        @keyframes fadeLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            .brand-panel { display: none; }
+            html, body { overflow: auto; }
+            .form-panel { padding: 20px; align-items: flex-start; }
+            .form-card { padding: 28px 22px; border-radius: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- BRAND PANEL -->
+    <div class="brand-panel">
+        <div class="brand-logo">✦</div>
+        <h1>DevByte AI</h1>
+        <p>Trợ lý AI mua sắm điện thoại thông minh – so sánh, gợi ý và hỗ trợ 24/7.</p>
+
+        <div class="brand-features">
+            <div class="brand-feature">
+                <i class="ri-robot-line"></i>
+                <span>Chatbot AI so sánh điện thoại</span>
+            </div>
+            <div class="brand-feature">
+                <i class="ri-flashlight-line"></i>
+                <span>Phản hồi tức thì, không chờ đợi</span>
+            </div>
+            <div class="brand-feature">
+                <i class="ri-shield-check-line"></i>
+                <span>Dữ liệu bảo mật, lưu trữ cục bộ</span>
+            </div>
+            <div class="brand-feature">
+                <i class="ri-smartphone-line"></i>
+                <span>Gợi ý phù hợp ngân sách</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORM PANEL -->
+    <div class="form-panel">
+        <div class="form-card">
+            <h2>Tạo tài khoản 🚀</h2>
+            <p class="sub">Đăng ký miễn phí, dùng ngay chatbot AI</p>
+
+            <form id="registerForm" novalidate>
+
+                <!-- Họ tên -->
+                <div class="field">
+                    <label>Họ và tên</label>
+                    <div class="input-wrap">
+                        <input type="text" id="fullname" placeholder="Nguyễn Văn A">
+                        <i class="ri-user-line"></i>
+                    </div>
+                    <div class="err-msg" id="err-fullname"><i class="ri-error-warning-line"></i> <span></span></div>
+                </div>
+
+                <!-- Email -->
+                <div class="field">
+                    <label>Email</label>
+                    <div class="input-wrap">
+                        <input type="email" id="email" placeholder="example@gmail.com">
+                        <i class="ri-mail-line"></i>
+                    </div>
+                    <div class="err-msg" id="err-email"><i class="ri-error-warning-line"></i> <span></span></div>
+                </div>
+
+                <!-- Phone -->
+                <div class="field">
+                    <label>Số điện thoại</label>
+                    <div class="input-wrap">
+                        <input type="tel" id="phone" placeholder="0901234567">
+                        <i class="ri-phone-line"></i>
+                    </div>
+                    <div class="err-msg" id="err-phone"><i class="ri-error-warning-line"></i> <span></span></div>
+                </div>
+
+                <!-- Password -->
+                <div class="field">
+                    <label>Mật khẩu</label>
+                    <div class="input-wrap">
+                        <input type="password" id="password" placeholder="Tối thiểu 8 ký tự">
+                        <i class="ri-lock-line"></i>
+                        <i class="ri-eye-off-line toggle-pw" id="togglePw" onclick="togglePassword('password','togglePw')"></i>
+                    </div>
+                    <div class="strength-wrap" id="strengthWrap">
+                        <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+                        <div class="strength-label" id="strengthLabel"></div>
+                    </div>
+                    <div class="err-msg" id="err-password"><i class="ri-error-warning-line"></i> <span></span></div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="field">
+                    <label>Xác nhận mật khẩu</label>
+                    <div class="input-wrap">
+                        <input type="password" id="confirm" placeholder="Nhập lại mật khẩu">
+                        <i class="ri-lock-2-line"></i>
+                        <i class="ri-eye-off-line toggle-pw" id="toggleCf" onclick="togglePassword('confirm','toggleCf')"></i>
+                    </div>
+                    <div class="err-msg" id="err-confirm"><i class="ri-error-warning-line"></i> <span></span></div>
+                </div>
+
+                <!-- Gender -->
+                <div class="field">
+                    <label>Giới tính</label>
+                    <div class="radio-group">
+                        <label class="radio-option" id="opt-male">
+                            <input type="radio" name="gender" value="Nam" checked>
+                            <i class="ri-men-line"></i> Nam
+                        </label>
+                        <label class="radio-option" id="opt-female">
+                            <input type="radio" name="gender" value="Nữ">
+                            <i class="ri-women-line"></i> Nữ
+                        </label>
+                        <label class="radio-option" id="opt-other">
+                            <input type="radio" name="gender" value="Khác">
+                            <i class="ri-question-line"></i> Khác
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <span>Đăng ký ngay</span>
+                    <div class="spinner"></div>
+                </button>
+
+            </form>
+
+            <div class="form-footer">
+                Đã có tài khoản? <a href="login.html">Đăng nhập</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+        <div class="modal-icon">🎉</div>
+        <h3>Đăng ký thành công!</h3>
+        <p>Chào mừng bạn đến với DevByte AI. Đây là thông tin tài khoản của bạn:</p>
+
+        <div class="modal-info" id="modalInfo"></div>
+
+        <button class="btn-modal" onclick="goToLogin()">Đăng nhập ngay →</button>
+    </div>
+</div>
+
+<script>
+// ===== HELPERS =====
+
+function showErr(id, msg) {
+    const el = document.getElementById('err-' + id);
+    el.querySelector('span').textContent = msg;
+    el.classList.add('show');
+    document.getElementById(id).classList.add('error');
+    document.getElementById(id).classList.remove('success');
+}
+
+function clearErr(id) {
+    const el = document.getElementById('err-' + id);
+    el.classList.remove('show');
+    document.getElementById(id).classList.remove('error');
+    document.getElementById(id).classList.add('success');
+}
+
+function togglePassword(inputId, iconId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'ri-eye-line toggle-pw';
+        icon.setAttribute('onclick', `togglePassword('${inputId}','${iconId}')`);
+    } else {
+        input.type = 'password';
+        icon.className = 'ri-eye-off-line toggle-pw';
+        icon.setAttribute('onclick', `togglePassword('${inputId}','${iconId}')`);
+    }
+}
+
+// ===== RADIO STYLING =====
+
+document.querySelectorAll('.radio-option input').forEach(radio => {
+    radio.addEventListener('change', () => {
+        document.querySelectorAll('.radio-option').forEach(opt => opt.classList.remove('selected'));
+        radio.closest('.radio-option').classList.add('selected');
+    });
+    if (radio.checked) radio.closest('.radio-option').classList.add('selected');
+});
+
+// ===== PASSWORD STRENGTH =====
+
+document.getElementById('password').addEventListener('input', function() {
+    const val = this.value;
+    const wrap = document.getElementById('strengthWrap');
+    const fill = document.getElementById('strengthFill');
+    const label = document.getElementById('strengthLabel');
+
+    if (!val) { wrap.classList.remove('show'); return; }
+    wrap.classList.add('show');
+
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+
+    const levels = [
+        { pct: '25%', color: '#ef4444', text: 'Yếu' },
+        { pct: '50%', color: '#f97316', text: 'Trung bình' },
+        { pct: '75%', color: '#eab308', text: 'Khá' },
+        { pct: '100%', color: '#22c55e', text: 'Mạnh 💪' },
+    ];
+    const lvl = levels[Math.max(0, score - 1)];
+    fill.style.width = lvl.pct;
+    fill.style.background = lvl.color;
+    label.textContent = 'Độ mạnh: ' + lvl.text;
+    label.style.color = lvl.color;
+});
+
+// ===== LIVE VALIDATION =====
+
+document.getElementById('fullname').addEventListener('blur', function() {
+    if (this.value.trim().length < 2) showErr('fullname', 'Họ tên phải từ 2 ký tự trở lên');
+    else clearErr('fullname');
+});
+
+document.getElementById('email').addEventListener('blur', function() {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!re.test(this.value)) showErr('email', 'Email không hợp lệ');
+    else clearErr('email');
+});
+
+document.getElementById('phone').addEventListener('blur', function() {
+    const re = /^(0|\+84)[3-9]\d{8}$/;
+    if (!re.test(this.value.replace(/\s/g,''))) showErr('phone', 'Số điện thoại Việt Nam không hợp lệ');
+    else clearErr('phone');
+});
+
+document.getElementById('password').addEventListener('blur', function() {
+    if (this.value.length < 8) showErr('password', 'Mật khẩu phải có ít nhất 8 ký tự');
+    else clearErr('password');
+});
+
+document.getElementById('confirm').addEventListener('blur', function() {
+    if (this.value !== document.getElementById('password').value) showErr('confirm', 'Mật khẩu xác nhận không khớp');
+    else clearErr('confirm');
+});
+
+// ===== SUBMIT =====
+
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fullname = document.getElementById('fullname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const password = document.getElementById('password').value;
+    const confirm = document.getElementById('confirm').value;
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+
+    let valid = true;
+
+    if (fullname.length < 2) { showErr('fullname', 'Họ tên phải từ 2 ký tự trở lên'); valid = false; }
+    else clearErr('fullname');
+
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email)) { showErr('email', 'Email không hợp lệ'); valid = false; }
+    else clearErr('email');
+
+    const phoneRe = /^(0|\+84)[3-9]\d{8}$/;
+    if (!phoneRe.test(phone.replace(/\s/g,''))) { showErr('phone', 'Số điện thoại không hợp lệ'); valid = false; }
+    else clearErr('phone');
+
+    if (password.length < 8) { showErr('password', 'Mật khẩu phải có ít nhất 8 ký tự'); valid = false; }
+    else clearErr('password');
+
+    if (confirm !== password) { showErr('confirm', 'Mật khẩu xác nhận không khớp'); valid = false; }
+    else clearErr('confirm');
+
+    if (!valid) return;
+
+    // Check email duplicate
+    const existing = JSON.parse(localStorage.getItem('devbyte_users') || '[]');
+    if (existing.find(u => u.email === email)) {
+        showErr('email', 'Email này đã được đăng ký');
+        return;
+    }
+
+    // Loading animation
+    const btn = document.getElementById('submitBtn');
+    btn.classList.add('loading');
+
+    setTimeout(() => {
+        btn.classList.remove('loading');
+
+        const newUser = {
+            fullname, email, phone, gender,
+            password: btoa(password), // base64 (demo only)
+            createdAt: new Date().toLocaleDateString('vi-VN')
+        };
+
+        existing.push(newUser);
+        localStorage.setItem('devbyte_users', JSON.stringify(existing));
+
+        // Show success modal
+        document.getElementById('modalInfo').innerHTML = `
+            <div class="modal-info-row"><span>Họ tên</span><span>${fullname}</span></div>
+            <div class="modal-info-row"><span>Email</span><span>${email}</span></div>
+            <div class="modal-info-row"><span>Điện thoại</span><span>${phone}</span></div>
+            <div class="modal-info-row"><span>Giới tính</span><span>${gender}</span></div>
+            <div class="modal-info-row"><span>Ngày đăng ký</span><span>${new Date().toLocaleDateString('vi-VN')}</span></div>
+        `;
+        document.getElementById('successModal').classList.add('show');
+    }, 1500);
+});
+
+function goToLogin() {
+    window.location.href = 'login.html';
+}
+</script>
+
+</body>
+</html>

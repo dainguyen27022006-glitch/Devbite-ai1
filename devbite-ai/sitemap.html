@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevByte AI Sitemap</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+</head>
+<body>
+
+<!-- =========================================
+                SITEMAP<!-- NÚT TRANG CHỦ -->
+<div style="position:fixed;top:20px;right:20px;z-index:9999;">
+  <a href="about.html"
+    style="display:flex;align-items:center;gap:6px;
+           padding:10px 16px;border-radius:20px;
+           background:rgba(255,255,255,0.06);
+           border:1px solid rgba(255,255,255,0.1);
+           color:#cbd5e1;font-size:14px;text-decoration:none;
+           font-family:Arial,sans-serif;transition:.2s;"
+    onmouseover="this.style.background='rgba(56,189,248,0.12)';this.style.borderColor='#38bdf8';this.style.color='#38bdf8'"
+    onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#cbd5e1'">
+    🏠 Trang chủ
+  </a>
+</div> DIAGRAM
+========================================= -->
+
+<section class="sitemap-diagram">
+
+  <h2 class="map-title">DevByte AI Sitemap</h2>
+
+  <div class="tree">
+
+    <!-- MAIN -->
+    <ul>
+      <li>
+        <a href="index.html" class="main-node">Home</a>
+
+        <ul>
+
+          <!-- ABOUT -->
+          <li>
+            <a href="about.html">About</a>
+            <ul>
+              <li><a href="#">Team</a></li>
+              <li><a href="#">Mission</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </li>
+
+          <!-- FEATURES -->
+          <li>
+            <a href="features.html">Features</a>
+            <ul>
+              <li><a href="#">AI Writer</a></li>
+              <li><a href="#">AI Image</a></li>
+              <li><a href="#">AI Video</a></li>
+            </ul>
+          </li>
+
+          <!-- PRICING -->
+          <li>
+            <a href="pricing.html">Pricing</a>
+            <ul>
+              <li><a href="#">Starter</a></li>
+              <li><a href="#">Pro</a></li>
+              <li><a href="#">Enterprise</a></li>
+            </ul>
+          </li>
+
+          <!-- BLOG -->
+          <li>
+            <a href="blog.html">Blog</a>
+            <ul>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Tutorials</a></li>
+              <li><a href="#">Guides</a></li>
+            </ul>
+          </li>
+
+          <!-- CONTACT -->
+          <li>
+            <a href="contact.html">Contact</a>
+            <ul>
+              <li><a href="#">Support</a></li>
+              <li><a href="#">Live Chat</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+<style>
+
+/* =========================================
+              SITEMAP TREE STYLE
+========================================= */
+
+body{
+  background:#0f172a;
+}
+
+.sitemap-diagram{
+  width:100%;
+  padding:100px 5%;
+  overflow:auto;
+}
+
+.map-title{
+  text-align:center;
+  font-size:52px;
+  color:#fff;
+  margin-bottom:80px;
+  font-weight:800;
+}
+
+.tree{
+  display:flex;
+  justify-content:center;
+}
+
+.tree ul{
+  padding-top:20px;
+  position:relative;
+  transition:.5s;
+}
+
+.tree li{
+  float:left;
+  text-align:center;
+  list-style-type:none;
+  position:relative;
+  padding:20px 10px 0 10px;
+}
+
+/* LINE TOP */
+.tree li::before,
+.tree li::after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:50%;
+  border-top:2px solid #38bdf8;
+  width:50%;
+  height:20px;
+}
+
+.tree li::after{
+  right:auto;
+  left:50%;
+  border-left:2px solid #38bdf8;
+}
+
+/* REMOVE SIDE LINES */
+.tree li:only-child::after,
+.tree li:only-child::before{
+  display:none;
+}
+
+.tree li:only-child{
+  padding-top:0;
+}
+
+.tree li:first-child::before,
+.tree li:last-child::after{
+  border:none;
+}
+
+.tree li:last-child::before{
+  border-right:2px solid #38bdf8;
+  border-radius:0 5px 0 0;
+}
+
+.tree li:first-child::after{
+  border-radius:5px 0 0 0;
+}
+
+/* DOWN LINE */
+.tree ul ul::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:50%;
+  border-left:2px solid #38bdf8;
+  width:0;
+  height:20px;
+}
+
+/* NODE DESIGN */
+.tree li a{
+  border:1px solid rgba(255,255,255,0.1);
+  padding:14px 22px;
+  text-decoration:none;
+  color:#fff;
+  background:rgba(255,255,255,0.05);
+  border-radius:18px;
+  display:inline-block;
+  min-width:140px;
+  transition:.4s;
+  backdrop-filter:blur(10px);
+  font-weight:600;
+  box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+/* MAIN NODE */
+.tree li a.main-node{
+  background:linear-gradient(135deg,#06b6d4,#3b82f6);
+  font-size:20px;
+  font-weight:700;
+}
+
+/* HOVER */
+.tree li a:hover{
+  background:#38bdf8;
+  color:#0f172a;
+  transform:translateY(-6px);
+  box-shadow:0 0 25px rgba(56,189,248,0.5);
+}
+
+/* RESPONSIVE */
+@media(max-width:1200px){
+
+  .tree{
+    width:max-content;
+    margin:auto;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .map-title{
+    font-size:36px;
+  }
+
+  .tree li a{
+    min-width:110px;
+    font-size:14px;
+    padding:12px 16px;
+  }
+
+}
+
+</style>
+<script src="js/profile-widget.js"></script>
+</body></html>

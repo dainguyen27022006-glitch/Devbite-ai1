@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevByte AI</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/sidebar-upgrade.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="main-layout">
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <div class="sidebar">
+    <div class="sidebar-top">
+      <div class="logo-mini">✦</div>
+      <button class="new-chat-btn">+ New Chat</button>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="sidebar-section">
+      <p class="sidebar-title">TOOLS</p>
+
+      <div class="side-item" onclick="document.querySelector('.new-chat-btn').click()">
+        <i class="ri-add-circle-line"></i><span>New chat</span>
+      </div>
+
+      <div class="side-item" id="searchToggle"
+           onclick="document.getElementById('searchChatWrap').classList.toggle('show-search')">
+        <i class="ri-search-line"></i><span>Search chats</span>
+      </div>
+      <div id="searchChatWrap" style="display:none;padding:0 4px 6px">
+        <div class="search-chat-wrap">
+          <i class="ri-search-line search-icon"></i>
+          <input type="text" id="searchChatInput" placeholder="Tìm đoạn chat...">
+        </div>
+      </div>
+
+      <div class="more-menu-wrapper">
+        <button class="more-btn" id="moreBtn">
+          <i class="ri-more-line"></i><span>More</span>
+        </button>
+        <div class="more-menu" id="moreMenu">
+          <div class="more-menu-item" id="moreImage">
+            <i class="ri-image-line"></i> Images
+          </div>
+          <div class="more-menu-item" id="moreDeepResearch">
+            <i class="ri-microscope-line"></i> Deep research
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECENT -->
+    <div class="sidebar-section">
+      <p class="sidebar-title">RECENT</p>
+      <div id="recentList"></div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="sidebar-bottom">
+      <div class="profile-menu-wrapper">
+        <div class="profile" id="profileTrigger">
+          <div class="avatar" id="profileAvatar">T</div>
+          <div>
+            <h4 id="profileName">Người dùng</h4>
+            <span id="profilePlan">Free Plan</span>
+          </div>
+        </div>
+        <div class="profile-menu" id="profileMenu">
+          <div class="profile-menu-header">
+            <div class="profile-menu-avatar" id="profileMenuAvatar">T</div>
+            <div class="info">
+              <h4 id="profileMenuName">Người dùng</h4>
+              <span>Free Plan</span>
+            </div>
+          </div>
+          <div class="profile-menu-item plus" id="menuTryPlus">
+            <i class="ri-vip-crown-line"></i> Try Plus
+          </div>
+          <div class="profile-menu-item" id="menuProfile">
+            <i class="ri-user-line"></i> Profile
+          </div>
+          <div class="profile-menu-item" id="menuSettings">
+            <i class="ri-settings-3-line"></i> Settings
+          </div>
+          <div class="profile-menu-item danger" id="menuLogout">
+            <i class="ri-logout-box-r-line"></i> Log out
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CHAT MAIN ==================== -->
+  <div class="chat-main">
+
+   <!-- TOPBAR -->
+<div class="topbar">
+  <div>
+    <h1>DevByte AI ✦</h1>
+    <p>Trợ lý tư vấn điện thoại thông minh của bạn</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="about.html"
+      style="display:flex;align-items:center;gap:6px;
+             padding:10px 16px;border-radius:20px;
+             background:rgba(255,255,255,0.06);
+             border:1px solid rgba(255,255,255,0.1);
+             color:#cbd5e1;font-size:14px;text-decoration:none;
+             transition:.2s;"
+      onmouseover="this.style.background='rgba(56,189,248,0.15)';this.style.borderColor='#38bdf8';this.style.color='#38bdf8'"
+      onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.1)';this.style.color='#cbd5e1'">
+      ← Trang chủ
+    </a>
+    <div class="status">● Online</div>
+  </div>
+</div>
+
+    <!-- CHAT CONTAINER -->
+    <div class="chat-container">
+
+      <!-- CHATBOX -->
+      <div class="chat-box" id="chatBox">
+        <!-- Tin nhắn chào mừng -->
+        <div class="message bot-message">
+          👋 Xin chào! Mình là <b>DevByte AI</b> — trợ lý tư vấn điện thoại của bạn.<br><br>
+          Bạn có thể hỏi mình về:<br>
+          📱 So sánh điện thoại &nbsp;|&nbsp; 🔋 Pin trâu &nbsp;|&nbsp; 💰 Giá tốt
+        </div>
+      </div>
+
+      <!-- ACTION BAR (các nút công cụ) -->
+      <div class="action-bar" id="actionBar">
+        <!-- btn[0]: File -->
+        <button id="btnFile" title="Đính kèm file">
+          <i class="ri-attachment-2"></i>
+        </button>
+        <!-- btn[1]: Voice -->
+        <button id="btnVoice" title="Ghi âm giọng nói">
+          <i class="ri-mic-line"></i>
+        </button>
+        <!-- btn[2]: Image -->
+        <button id="btnImage" title="Thêm hình ảnh">
+          <i class="ri-image-line"></i>
+        </button>
+        <!-- btn[3]: Search product -->
+        <button id="btnSearch" title="Tìm kiếm sản phẩm">
+          <i class="ri-search-line"></i>
+        </button>
+        <!-- btn[4]: Settings -->
+        <button id="btnSettings" title="Cài đặt">
+          <i class="ri-settings-3-line"></i>
+        </button>
+      </div>
+
+      <!-- INPUT BAR -->
+      <div class="chat-input">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Hỏi về điện thoại bạn muốn tư vấn..."
+          autocomplete="off"
+        >
+        <button id="sendBtn">
+          <i class="ri-send-plane-fill"></i>
+        </button>
+      </div>
+
+    </div><!-- end .chat-container -->
+  </div><!-- end .chat-main -->
+
+</div><!-- end .main-layout -->
+
+<!-- ==================== SCRIPTS ==================== -->
+ <script src="js/auth.js"></script>
+<script src="js/data.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/sidebar-upgrade.js"></script>
+<script src="js/action-bar.js"></script>
+<!-- Bảo vệ trang — chưa login thì về login.html -->
+<script>
+  Auth.requireLogin();
+</script>
+</body>
+</html>

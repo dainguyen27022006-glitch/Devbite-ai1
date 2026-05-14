@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevByte AI – Đăng nhập</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --blue: #2563eb;
+            --cyan: #06b6d4;
+            --green: #22c55e;
+            --red: #ef4444;
+            --glass: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.08);
+            --text-muted: #94a3b8;
+        }
+
+        html, body {
+            width: 100%; height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, #172554 0%, #020617 45%, #000 100%);
+            color: white;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ---- PARTICLES ---- */
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px; height: 2px;
+            border-radius: 50%;
+            background: rgba(56,189,248,.4);
+            animation: drift linear infinite;
+        }
+
+        @keyframes drift {
+            from { transform: translateY(110vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            to { transform: translateY(-10vh) translateX(40px); opacity: 0; }
+        }
+
+        /* ---- CARD ---- */
+        .login-card {
+            width: 100%;
+            max-width: 460px;
+            padding: 50px 44px;
+            margin: 20px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 36px;
+            backdrop-filter: blur(40px);
+            box-shadow: 0 30px 80px rgba(0,0,0,.5), inset 0 1px rgba(255,255,255,.06);
+            animation: popIn .5s cubic-bezier(.175,.885,.32,1.275);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* ---- HEADER ---- */
+        .card-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .logo {
+            width: 64px; height: 64px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 10px 35px rgba(37,99,235,.4);
+            margin: 0 auto 20px;
+            animation: float 4s ease infinite;
+        }
+
+        .card-header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .card-header p { color: var(--text-muted); font-size: 14px; }
+
+        /* ---- WELCOME BANNER (shown when user comes from register) ---- */
+        .welcome-banner {
+            background: rgba(34,197,94,.1);
+            border: 1px solid rgba(34,197,94,.2);
+            border-radius: 14px;
+            padding: 12px 16px;
+            font-size: 14px;
+            color: #86efac;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-banner.show { display: flex; }
+
+        /* ---- FORM ELEMENTS ---- */
+        .field { margin-bottom: 20px; }
+
+        .field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .input-wrap { position: relative; }
+
+        .input-wrap i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 17px;
+            pointer-events: none;
+            transition: color .2s;
+        }
+
+        .input-wrap .toggle-pw {
+            left: auto; right: 16px;
+            cursor: pointer;
+            pointer-events: all;
+        }
+
+        .input-wrap input {
+            width: 100%;
+            height: 54px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            color: white;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            padding: 0 16px 0 46px;
+            outline: none;
+            transition: border .25s, box-shadow .25s;
+        }
+
+        .input-wrap input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56,189,248,.12);
+        }
+
+        .input-wrap input.error {
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(239,68,68,.12);
+        }
+
+        .err-msg {
+            font-size: 12px;
+            color: var(--red);
+            margin-top: 6px;
+            display: none;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .err-msg.show { display: flex; }
+
+        /* ---- REMEMBER + FORGOT ---- */
+        .row-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-muted);
+            user-select: none;
+        }
+
+        .remember input { display: none; }
+
+        .custom-check {
+            width: 18px; height: 18px;
+            border-radius: 6px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px;
+            transition: .2s;
+        }
+
+        .remember input:checked ~ .custom-check {
+            background: var(--blue);
+            border-color: var(--blue);
+        }
+
+        .forgot-link {
+            font-size: 14px;
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .forgot-link:hover { text-decoration: underline; }
+
+        /* ---- SUBMIT ---- */
+        .btn-submit {
+            width: 100%;
+            height: 56px;
+            border: none;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: .25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(37,99,235,.35);
+        }
+
+        .btn-submit .spinner {
+            display: none;
+            width: 20px; height: 20px;
+            border: 2px solid rgba(255,255,255,.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            margin: auto;
+        }
+
+        .btn-submit.loading span { display: none; }
+        .btn-submit.loading .spinner { display: block; }
+
+        /* ---- DIVIDER ---- */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 22px 0;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        /* ---- DEMO ACCOUNTS ---- */
+        .demo-accounts {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .demo-btn {
+            width: 100%;
+            height: 44px;
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            background: var(--glass);
+            color: var(--text-muted);
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: .25s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .demo-btn:hover {
+            background: rgba(255,255,255,.08);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* ---- FOOTER ---- */
+        .form-footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .form-footer a {
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-footer a:hover { text-decoration: underline; }
+
+        /* ---- ERROR MODAL ---- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.65);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+
+        .modal-overlay.show { opacity: 1; pointer-events: all; }
+
+        .modal-box {
+            background: #0f172a;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 28px;
+            padding: 40px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            transform: scale(.9) translateY(20px);
+            transition: transform .35s;
+            box-shadow: 0 30px 80px rgba(0,0,0,.5);
+        }
+
+        .modal-overlay.show .modal-box { transform: scale(1) translateY(0); }
+
+        .modal-icon {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 16px;
+        }
+
+        .modal-icon.error-icon {
+            background: rgba(239,68,68,.15);
+            border: 2px solid rgba(239,68,68,.3);
+        }
+
+        .modal-icon.success-icon {
+            background: rgba(34,197,94,.15);
+            border: 2px solid rgba(34,197,94,.3);
+        }
+
+        .modal-box h3 { font-size: 20px; margin-bottom: 8px; }
+        .modal-box p { color: var(--text-muted); font-size: 14px; line-height: 1.6; }
+
+        .modal-user-card {
+            margin: 16px 0;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .muc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-muted);
+        }
+        .muc-row:last-child { border: none; }
+        .muc-row span:last-child { color: white; font-weight: 500; }
+
+        .btn-modal {
+            width: 100%;
+            height: 48px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: .25s;
+        }
+
+        .btn-modal:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,99,235,.35); }
+
+        .btn-modal-outline {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .btn-modal-outline:hover { background: var(--glass); color: white; }
+
+        /* ---- SHAKE ANIMATION ---- */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .shake { animation: shake .4s ease; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 500px) {
+            .login-card { padding: 32px 22px; border-radius: 24px; margin: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating particles background -->
+<div class="particles" id="particles"></div>
+
+<div class="login-card">
+    <div class="card-header">
+        <div class="logo">✦</div>
+        <h1>Chào trở lại!</h1>
+        <p>Đăng nhập để tiếp tục với DevByte AI</p>
+    </div>
+
+    <!-- Welcome banner (show after register) -->
+    <div class="welcome-banner" id="welcomeBanner">
+        <i class="ri-checkbox-circle-line" style="font-size:18px"></i>
+        <span>Đăng ký thành công! Hãy đăng nhập để vào chatbot nhé.</span>
+    </div>
+
+    <form id="loginForm" novalidate>
+
+        <!-- Email -->
+        <div class="field">
+            <label>Email</label>
+            <div class="input-wrap">
+                <input type="email" id="loginEmail" placeholder="example@gmail.com">
+                <i class="ri-mail-line"></i>
+            </div>
+            <div class="err-msg" id="err-loginEmail"><i class="ri-error-warning-line"></i> <span></span></div>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+            <label>Mật khẩu</label>
+            <div class="input-wrap">
+                <input type="password" id="loginPassword" placeholder="••••••••">
+                <i class="ri-lock-line"></i>
+                <i class="ri-eye-off-line toggle-pw" id="toggleLoginPw" onclick="togglePassword('loginPassword','toggleLoginPw')"></i>
+            </div>
+            <div class="err-msg" id="err-loginPassword"><i class="ri-error-warning-line"></i> <span></span></div>
+        </div>
+
+        <!-- Remember + Forgot -->
+        <div class="row-options">
+            <label class="remember">
+                <input type="checkbox" id="rememberMe">
+                <div class="custom-check" id="checkIcon"></div>
+                Nhớ đăng nhập
+            </label>
+            <a href="#" class="forgot-link" onclick="showForgotModal()">Quên mật khẩu?</a>
+        </div>
+
+        <button type="submit" class="btn-submit" id="loginBtn">
+            <span>Đăng nhập</span>
+            <div class="spinner"></div>
+        </button>
+    </form>
+
+    <div class="divider">hoặc dùng tài khoản demo</div>
+
+    <div class="demo-accounts">
+        <button class="demo-btn" onclick="fillDemo('demo@devbyte.ai','Demo@12345')">
+            <i class="ri-user-line"></i> Tài khoản demo – demo@devbyte.ai
+        </button>
+    </div>
+
+    <div class="form-footer">
+        Chưa có tài khoản? <a href="register.html">Đăng ký miễn phí</a>
+    </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+        <div class="modal-icon success-icon">👋</div>
+        <h3>Đăng nhập thành công!</h3>
+        <p>Xin chào trở lại, chào mừng bạn đến với DevByte AI!</p>
+        <div class="modal-user-card" id="loginUserCard"></div>
+        <button class="btn-modal" onclick="goToChat()">Vào Chatbot ngay →</button>
+    </div>
+</div>
+
+<!-- ERROR MODAL -->
+<div class="modal-overlay" id="errorModal">
+    <div class="modal-box">
+        <div class="modal-icon error-icon">🔐</div>
+        <h3>Đăng nhập thất bại</h3>
+        <p id="errorModalMsg">Email hoặc mật khẩu không đúng. Vui lòng kiểm tra lại.</p>
+        <button class="btn-modal" onclick="closeModal('errorModal')">Thử lại</button>
+        <button class="btn-modal btn-modal-outline" onclick="window.location.href='register.html'">Tạo tài khoản mới</button>
+    </div>
+</div>
+
+<!-- FORGOT MODAL -->
+<div class="modal-overlay" id="forgotModal">
+    <div class="modal-box">
+        <div class="modal-icon" style="background:rgba(6,182,212,.15);border:2px solid rgba(6,182,212,.3);">📧</div>
+        <h3>Quên mật khẩu?</h3>
+        <p>Tính năng đặt lại mật khẩu đang được phát triển. Hiện tại hãy dùng tài khoản demo để trải nghiệm.</p>
+        <button class="btn-modal" onclick="fillDemo('demo@devbyte.ai','Demo@12345'); closeModal('forgotModal')">Dùng tài khoản demo</button>
+        <button class="btn-modal btn-modal-outline" onclick="closeModal('forgotModal')">Đóng</button>
+    </div>
+</div>
+
+<script>
+// ===== PARTICLES =====
+(function(){
+    const container = document.getElementById('particles');
+    for(let i = 0; i < 20; i++){
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (8 + Math.random() * 12) + 's';
+        p.style.animationDelay = (Math.random() * 10) + 's';
+        p.style.width = p.style.height = (1 + Math.random() * 3) + 'px';
+        container.appendChild(p);
+    }
+})();
+
+// ===== CHECK IF CAME FROM REGISTER =====
+if(document.referrer.includes('register.html') || sessionStorage.getItem('justRegistered')){
+    document.getElementById('welcomeBanner').classList.add('show');
+    sessionStorage.removeItem('justRegistered');
+}
+
+// ===== ENSURE DEMO ACCOUNT EXISTS =====
+(function(){
+    const users = JSON.parse(localStorage.getItem('devbyte_users') || '[]');
+    if(!users.find(u => u.email === 'demo@devbyte.ai')){
+        users.push({
+            fullname: 'Người Dùng Demo',
+            email: 'demo@devbyte.ai',
+            phone: '0901234567',
+            gender: 'Nam',
+            password: btoa('Demo@12345'),
+            createdAt: '01/01/2025'
+        });
+        localStorage.setItem('devbyte_users', JSON.stringify(users));
+    }
+})();
+
+// ===== CHECKBOX STYLE =====
+document.getElementById('rememberMe').addEventListener('change', function(){
+    document.getElementById('checkIcon').textContent = this.checked ? '✓' : '';
+});
+
+// ===== TOGGLE PASSWORD =====
+function togglePassword(inputId, iconId){
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+    if(input.type === 'password'){
+        input.type = 'text';
+        icon.className = 'ri-eye-line toggle-pw';
+        icon.setAttribute('onclick', `togglePassword('${inputId}','${iconId}')`);
+    } else {
+        input.type = 'password';
+        icon.className = 'ri-eye-off-line toggle-pw';
+        icon.setAttribute('onclick', `togglePassword('${inputId}','${iconId}')`);
+    }
+}
+
+// ===== HELPERS =====
+function showErr(id, msg){
+    const el = document.getElementById('err-' + id);
+    el.querySelector('span').textContent = msg;
+    el.classList.add('show');
+    document.getElementById(id).classList.add('error');
+}
+
+function clearErr(id){
+    document.getElementById('err-' + id).classList.remove('show');
+    document.getElementById(id).classList.remove('error');
+}
+
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+
+function showForgotModal(){ document.getElementById('forgotModal').classList.add('show'); }
+
+function fillDemo(email, pw){
+    document.getElementById('loginEmail').value = email;
+    document.getElementById('loginPassword').value = pw;
+}
+
+// ===== SUBMIT =====
+document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const remember = document.getElementById('rememberMe').checked;
+
+    let valid = true;
+
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRe.test(email)){ showErr('loginEmail', 'Email không hợp lệ'); valid = false; }
+    else clearErr('loginEmail');
+
+    if(password.length < 6){ showErr('loginPassword', 'Mật khẩu phải có ít nhất 6 ký tự'); valid = false; }
+    else clearErr('loginPassword');
+
+    if(!valid) return;
+
+    const btn = document.getElementById('loginBtn');
+    btn.classList.add('loading');
+
+    setTimeout(() => {
+        btn.classList.remove('loading');
+
+        const users = JSON.parse(localStorage.getItem('devbyte_users') || '[]');
+        const user = users.find(u => u.email === email && u.password === btoa(password));
+
+        if(!user){
+            // Shake card
+            document.querySelector('.login-card').classList.add('shake');
+            setTimeout(() => document.querySelector('.login-card').classList.remove('shake'), 400);
+            document.getElementById('errorModal').classList.add('show');
+            return;
+        }
+
+        // Save session
+        const session = { email: user.email, fullname: user.fullname, loggedIn: true };
+        if(remember){
+            localStorage.setItem('devbyte_session', JSON.stringify(session));
+        } else {
+            sessionStorage.setItem('devbyte_session', JSON.stringify(session));
+        }
+
+        // Show success modal
+        document.getElementById('loginUserCard').innerHTML = `
+            <div class="muc-row"><span>Họ tên</span><span>${user.fullname}</span></div>
+            <div class="muc-row"><span>Email</span><span>${user.email}</span></div>
+            <div class="muc-row"><span>Giới tính</span><span>${user.gender || 'N/A'}</span></div>
+        `;
+        document.getElementById('successModal').classList.add('show');
+
+    }, 1400);
+});
+
+function goToChat(){
+    window.location.href = 'chat.html';
+}
+</script>
+</body>
+</html>
